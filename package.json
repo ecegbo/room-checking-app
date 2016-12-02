@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ecegbo/room-checking-app/issues"
   },
-  "homepage": "https://github.com/ecegbo/room-checking-app#readme"
+  "homepage": "https://github.com/ecegbo/room-checking-app#readme",
+  "devDependencies": {
+    "font-awesome": "^4.7.0"
+  }
 }
