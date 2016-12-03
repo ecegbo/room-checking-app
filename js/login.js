@@ -1,6 +1,6 @@
 function login(userName,passWord){
 	if(userName=="sheyi" && passWord=="Sheyi"){
-		//create session variables or cookies
+		//create session variables or cookies and redirect to home page
 		window.location = "http://localhost/room-checking-app/home.html";
 	}
 	else
@@ -8,6 +8,6 @@ function login(userName,passWord){
 }
 
 function logout(){
-	//destroy session variable or cookies
+	//destroy session variable or cookies and redirect to login page
 	window.location = "http://localhost/room-checking-app/index.html";
 }

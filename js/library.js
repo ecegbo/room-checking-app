@@ -1,4 +1,3 @@
-
 function database(){
   var rooms = [
           {id: 0, type : 1,name: "Meeting Room 1",status:0},
