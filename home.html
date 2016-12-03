@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Room Checking Application</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+
+	<script src="js/library.js"></script>
+	<script src="js/login.js"></script>
+<script>
+
+	var status1 = 0;
+	var status2 = 0;
+	var type = 0;
+	var id1 =0;
+	var id2 = 0;
+	var db = database();
+	
+	function display(type_id){
+		type = type_id;
+		var arr = search(type_id,db);
+		status1 = arr[0].status;
+		status2 = arr[1].status;
+		id1= arr[0].id;
+		id2= arr[1].id;
+		var ele1 = document.getElementById("room1");
+		ele1.innerHTML = arr[0].name;
+		 var ele2 = document.getElementById("room2");
+		ele2.innerHTML = arr[1].name;
+
+		updateLinkClass(ele1,status1);
+		updateLinkClass(ele2,status2);
+
+			}
+
+	function roomStatusUpdate(id){
+		var ele = document.getElementById(id.toString());
+		if(ele.name == "1"){
+			if(status1 == 0){
+				db[id1].status = 1;
+				updateLinkClass(ele,db[id1].status);
+			}
+	    	else{
+	    		alert("Room not available");
+	    	}
+	    	status1 = db[id1].status;
+		}
+	  	else{
+	  		if(status2 == 0){
+				db[id2].status = 1;
+				updateLinkClass(ele,db[id2].status);
+			}
+	    	else{
+				alert("Room not available");
+			}
+
+	    	status2 = db[id2].status;
+	  	}
+	  	
+			console.log("id1="+id1+"id2="+id2);
+	    
+	    }
+
+	 function updateLinkClass(ele,status){
+	 	if(status == 0)
+	 		ele.className = "active";
+	 	else
+	 		ele.className = "inactive";
+	 }
+
+</script>
+</head>
+<body>
+	<header>
+	<nav class="navbar navbar-inverse">
+		<a href="/" class="navbar-brand">Room Checking Application</a>
+		<ul class="nav navbar-nav">
+			<li><a href="../room-checking-app/home.html">Home</a></li>
+			<li><a href="../room-checking-app/">Login</a></li>
+			<li><a href="javascript:logout()">Logout</a></li>
+		</ul>
+	</nav>
+</header>
+<main>
+	<div class="container">
+		<div class="col-sm-3">
+			<h2>Room Category</h2>
+			<ul class="nav nav-pills nav-stacked">
+				<li>
+					<a href="javascript:display(1)">Meetings</a>
+				</li>
+				<li>
+					<a href="javascript:display(2)">Games</a>
+				</li>
+				<li>
+					<a href="javascript:display(3)">Quiet Time</a>
+				</li>
+				<li>
+					<a href="javascript:display(4)">Learning</a>
+				</li>
+				<li>
+					<a href="javascript:display(5)">Working</a>
+				</li>
+				<li>
+					<a href="javascript:display(-1)">View All</a>
+				</li>
+			</ul>
+		</div>		
+		<div class="col-md-9">
+			<h2>Rooms</h2>
+			<div id="rooms">
+				
+					<div id="room11" ><a href="javascript:roomStatusUpdate('room1')" id="room1" class="active" name="1"></a></div>
+				
+					<div id="room22" ><a href="javascript:roomStatusUpdate('room2')" id="room2" class="active" name="2"></a></div>
+				
+
+			</div>
+		</div>
+	</div>
+</main>
+<footer>
+	Room Checking Application. Copyright &copy; 2016
+</footer>
+
+</body>
+</html>

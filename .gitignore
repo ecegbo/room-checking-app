@@ -1,5 +1,8 @@
 # Logs
 logs
+node_modules/
+book.html
+
 *.log
 npm-debug.log*
 
